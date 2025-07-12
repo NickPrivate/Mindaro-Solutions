@@ -1,5 +1,6 @@
 'use client'
 
+import { supabase } from '@/lib/supabase'
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
 
@@ -36,34 +37,36 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!validateForm()) {
-      return
-    }
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
 
-    setIsSubmitting(true)
+      if (!validateForm()) {
+        return;
+      }
 
-    try {
-      // TODO: Replace with actual Supabase integration
-      // const { data, error } = await supabase
-      //   .from('contact_submissions')
-      //   .insert([formData])
+      setIsSubmitting(true);
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      try {
+        const { error } = await supabase
+          .from('contactForm')
+          .insert([formData]);
 
-      setIsSubmitted(true)
-      setFormData({ name: '', email: '', message: '' })
-      setErrors({})
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setErrors({ submit: 'Failed to send message. Please try again.' })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+        if (error) {
+          console.error('Supabase insert error:', error);
+          setErrors({ submit: 'Failed to send message. Please try again.' });
+          return;
+        }
+
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setErrors({});
+      } catch (error) {
+        console.error('Unexpected error submitting form:', error);
+        setErrors({ submit: 'Failed to send message. Please try again.' });
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -218,7 +221,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-secondary-900 mb-1">Email</h3>
-                    <p className="text-secondary-600">hello@mindarosolutions.com</p>
+                    <p className="text-secondary-600">contact@mindarosolutions.com</p>
                     <p className="text-sm text-secondary-500">We typically respond within 24 hours</p>
                   </div>
                 </div>
@@ -229,8 +232,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-secondary-900 mb-1">Phone</h3>
-                    <p className="text-secondary-600">+1 (555) 123-4567</p>
-                    <p className="text-sm text-secondary-500">Available Mon-Fri, 9AM-6PM EST</p>
+                    <p className="text-secondary-600">Coming Soon</p>
+                    <p className="text-sm text-secondary-500">Available Mon-Fri, 9AM-6PM </p>
                   </div>
                 </div>
 

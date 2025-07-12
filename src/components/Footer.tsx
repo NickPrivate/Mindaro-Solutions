@@ -17,7 +17,7 @@ const Footer = () => {
               AI software solutions, IT consulting, and custom software development for modern businesses.
             </p>
             <p className="text-secondary-300">
-              Email: <a href="mailto:hello@mindarosolutions.com" className="text-primary-400 hover:text-primary-300">hello@mindarosolutions.com</a>
+              Email: <a href="mailto:contact@mindarosolutions.com" className="text-primary-400 hover:text-primary-300">contact@mindarosolutions.com</a>
             </p>
           </div>
 
@@ -66,13 +66,10 @@ const Footer = () => {
             © {new Date().getFullYear()} Mindaro Solutions. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-secondary-400 hover:text-white transition-colors duration-200">
+            <a href="https://www.linkedin.com/company/mindarosolutions" className="text-secondary-400 hover:text-white transition-colors duration-200">
               LinkedIn
             </a>
-            <a href="#" className="text-secondary-400 hover:text-white transition-colors duration-200">
-              Twitter
-            </a>
-            <a href="#" className="text-secondary-400 hover:text-white transition-colors duration-200">
+            <a href="https://github.com/NickPrivate" className="text-secondary-400 hover:text-white transition-colors duration-200">
               GitHub
             </a>
           </div>
