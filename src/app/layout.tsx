@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     description: "Professional AI software solutions, IT consulting, and custom software development for small to medium-sized businesses.",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
